@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard • Sistema Hospitalar</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">✚</div>
+        <div><strong>Sistema Hospitalar</strong><span>Gestão de atendimentos</span></div>
+      </div>
+      <nav class="nav"><a class="active" href="index.html"><span>🏠</span> Dashboard</a>
+<a class="" href="pacientes.html"><span>👤</span> Pacientes</a>
+<a class="" href="profissionais.html"><span>🩺</span> Profissionais</a>
+<a class="" href="consultas.html"><span>📅</span> Consultas</a>
+<a class="" href="internacoes.html"><span>🛏️</span> Internações</a>
+<a class="" href="quartos.html"><span>🚪</span> Quartos</a>
+<a class="" href="historico.html"><span>📋</span> Histórico Médico</a></nav>
+      <div class="sidebar-footer">Programação Modular • Sprint 1</div>
+    </aside>
+    <main class="main">
+      <header class="topbar">
+        <div><p class="eyebrow">Sistema Hospitalar</p><h1>Dashboard</h1><p class="subtitle">Visão geral dos atendimentos e recursos do hospital.</p></div>
+        <div class="user"><div class="avatar">DM</div><div><strong>Davi Martins</strong><small>Administrador</small></div></div>
+      </header>
+      
+<section class="grid cards">
+  <article class="card stat"><div><span>Pacientes cadastrados</span><strong>248</strong></div><div class="icon">👤</div></article>
+  <article class="card stat"><div><span>Consultas hoje</span><strong>18</strong></div><div class="icon">📅</div></article>
+  <article class="card stat"><div><span>Internações ativas</span><strong>31</strong></div><div class="icon">🛏️</div></article>
+  <article class="card stat"><div><span>Quartos disponíveis</span><strong>12</strong></div><div class="icon">🚪</div></article>
+</section>
+
+<section class="grid two" style="margin-top:18px">
+  <article class="card">
+    <div class="section-title"><h2>Próximas consultas</h2><span class="badge">Agenda do dia</span></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Horário</th><th>Paciente</th><th>Profissional</th><th>Especialidade</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>08:30</td><td>Mariana Souza</td><td>Dr. Lucas Vieira</td><td>Cardiologia</td><td><span class="badge">Confirmada</span></td></tr>
+        <tr><td>10:00</td><td>João Ferreira</td><td>Dra. Ana Costa</td><td>Clínica Geral</td><td><span class="badge warning">Aguardando</span></td></tr>
+        <tr><td>14:20</td><td>Carla Mendes</td><td>Dr. Rafael Lima</td><td>Ortopedia</td><td><span class="badge">Confirmada</span></td></tr>
+      </tbody>
+    </table></div>
+  </article>
+  <article class="card">
+    <div class="section-title"><h2>Resumo hospitalar</h2></div>
+    <div class="kpi-list">
+      <div class="kpi-row"><span>Profissionais ativos</span><strong>42</strong></div>
+      <div class="kpi-row"><span>Quartos ocupados</span><strong>28</strong></div>
+      <div class="kpi-row"><span>Altas previstas hoje</span><strong>6</strong></div>
+      <div class="kpi-row"><span>Taxa de ocupação</span><strong>70%</strong></div>
+    </div>
+  </article>
+</section>
+
+<section class="card" style="margin-top:18px">
+  <div class="section-title"><h2>Documentação da Sprint 1</h2></div>
+  <div class="doc-links">
+    <a class="doc-link" href="documentos/DiagramaClasses.png" target="_blank"><strong>📐 Diagrama de Classes</strong><span>Imagem final do diagrama de classes UML.</span></a>
+    <a class="doc-link" href="documentos/CartoesCRC.docx" target="_blank"><strong>🗂️ Cartões CRC</strong><span>Classe, responsabilidades e colaborações.</span></a>
+  </div>
+  <p class="notice" style="margin:14px 0 0">Os arquivos da documentação já estão incluídos nesta pasta do projeto.</p>
+</section>
+
+    </main>
+  </div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pacientes • Sistema Hospitalar</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">✚</div>
+        <div><strong>Sistema Hospitalar</strong><span>Gestão de atendimentos</span></div>
+      </div>
+      <nav class="nav"><a class="" href="index.html"><span>🏠</span> Dashboard</a>
+<a class="active" href="pacientes.html"><span>👤</span> Pacientes</a>
+<a class="" href="profissionais.html"><span>🩺</span> Profissionais</a>
+<a class="" href="consultas.html"><span>📅</span> Consultas</a>
+<a class="" href="internacoes.html"><span>🛏️</span> Internações</a>
+<a class="" href="quartos.html"><span>🚪</span> Quartos</a>
+<a class="" href="historico.html"><span>📋</span> Histórico Médico</a></nav>
+      <div class="sidebar-footer">Programação Modular • Sprint 1</div>
+    </aside>
+    <main class="main">
+      <header class="topbar">
+        <div><p class="eyebrow">Sistema Hospitalar</p><h1>Pacientes</h1><p class="subtitle">Cadastro e consulta dos dados dos pacientes.</p></div>
+        <div class="user"><div class="avatar">DM</div><div><strong>Davi Martins</strong><small>Administrador</small></div></div>
+      </header>
+      
+<section class="card">
+  <div class="section-title"><h2>Novo paciente</h2><span class="badge">Cadastro</span></div>
+  <div class="form-grid">
+    <div class="form-group"><label>Nome completo</label><input placeholder="Ex.: Maria de Souza"></div>
+    <div class="form-group"><label>CPF</label><input placeholder="000.000.000-00"></div>
+    <div class="form-group"><label>Data de nascimento</label><input type="date"></div>
+    <div class="form-group"><label>Telefone</label><input placeholder="(31) 99999-9999"></div>
+    <div class="form-group full"><label>Endereço</label><input placeholder="Rua, número, bairro, cidade"></div>
+    <div class="form-group full"><label>E-mail</label><input type="email" placeholder="paciente@email.com"></div>
+  </div>
+  <div class="actions"><button class="btn secondary">Cancelar</button><button class="btn primary">Salvar paciente</button></div>
+</section>
+<section class="card" style="margin-top:18px">
+  <div class="section-title"><h2>Pacientes cadastrados</h2></div>
+  <div class="table-wrap"><table><thead><tr><th>Nome</th><th>CPF</th><th>Nascimento</th><th>Telefone</th><th>E-mail</th></tr></thead><tbody>
+    <tr><td>Mariana Souza</td><td>123.456.789-00</td><td>14/08/1990</td><td>(31) 98888-1020</td><td>mariana@email.com</td></tr>
+    <tr><td>João Ferreira</td><td>987.654.321-00</td><td>03/02/1982</td><td>(31) 97777-2211</td><td>joao@email.com</td></tr>
+  </tbody></table></div>
+</section>
+    </main>
+  </div>
+</body>
+</html>

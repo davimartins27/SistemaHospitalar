@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Internações • Sistema Hospitalar</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">✚</div>
+        <div><strong>Sistema Hospitalar</strong><span>Gestão de atendimentos</span></div>
+      </div>
+      <nav class="nav"><a class="" href="index.html"><span>🏠</span> Dashboard</a>
+<a class="" href="pacientes.html"><span>👤</span> Pacientes</a>
+<a class="" href="profissionais.html"><span>🩺</span> Profissionais</a>
+<a class="" href="consultas.html"><span>📅</span> Consultas</a>
+<a class="active" href="internacoes.html"><span>🛏️</span> Internações</a>
+<a class="" href="quartos.html"><span>🚪</span> Quartos</a>
+<a class="" href="historico.html"><span>📋</span> Histórico Médico</a></nav>
+      <div class="sidebar-footer">Programação Modular • Sprint 1</div>
+    </aside>
+    <main class="main">
+      <header class="topbar">
+        <div><p class="eyebrow">Sistema Hospitalar</p><h1>Internações</h1><p class="subtitle">Controle de entrada, permanência e alta dos pacientes.</p></div>
+        <div class="user"><div class="avatar">DM</div><div><strong>Davi Martins</strong><small>Administrador</small></div></div>
+      </header>
+      
+<section class="card">
+  <div class="section-title"><h2>Registrar internação</h2><span class="badge">Nova internação</span></div>
+  <div class="form-grid">
+    <div class="form-group"><label>Paciente</label><select><option>Selecione o paciente</option><option>Mariana Souza</option><option>João Ferreira</option></select></div>
+    <div class="form-group"><label>Profissional responsável</label><select><option>Selecione o profissional</option><option>Dr. Lucas Vieira</option><option>Dra. Ana Costa</option></select></div>
+    <div class="form-group"><label>Quarto</label><select><option>Selecione o quarto</option><option>201 - disponível</option><option>305 - disponível</option></select></div>
+    <div class="form-group"><label>Data de entrada</label><input type="date"></div>
+    <div class="form-group"><label>Data prevista de alta</label><input type="date"></div>
+    <div class="form-group"><label>Data efetiva de alta</label><input type="date"></div>
+    <div class="form-group full"><label>Observações</label><textarea placeholder="Informações relevantes sobre a internação"></textarea></div>
+  </div>
+  <div class="actions"><button class="btn secondary">Cancelar</button><button class="btn primary">Registrar internação</button></div>
+</section>
+<section class="card" style="margin-top:18px">
+  <div class="section-title"><h2>Internações atuais</h2></div>
+  <div class="table-wrap"><table><thead><tr><th>Paciente</th><th>Profissional</th><th>Quarto</th><th>Entrada</th><th>Alta prevista</th><th>Status</th></tr></thead><tbody>
+    <tr><td>Carla Mendes</td><td>Dr. Rafael Lima</td><td>204</td><td>05/10/2026</td><td>10/10/2026</td><td><span class="badge warning">Internado</span></td></tr>
+    <tr><td>Paulo Ribeiro</td><td>Dra. Ana Costa</td><td>318</td><td>04/10/2026</td><td>08/10/2026</td><td><span class="badge warning">Internado</span></td></tr>
+  </tbody></table></div>
+</section>
+    </main>
+  </div>
+</body>
+</html>
