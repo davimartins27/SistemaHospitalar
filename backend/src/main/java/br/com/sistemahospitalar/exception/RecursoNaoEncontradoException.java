@@ -1,0 +1,7 @@
+package br.com.sistemahospitalar.exception;
+
+public class RecursoNaoEncontradoException extends RuntimeException {
+    public RecursoNaoEncontradoException(String mensagem) {
+        super(mensagem);
+    }
+}

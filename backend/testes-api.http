@@ -1,0 +1,92 @@
+@baseUrl = http://localhost:8080
+
+### Cadastrar paciente
+POST {{baseUrl}}/pacientes
+Content-Type: application/json
+
+{
+  "nome": "Mariana Souza",
+  "cpf": "12345678900",
+  "dataNascimento": "1998-05-10",
+  "telefone": "31999990000",
+  "endereco": "Rua Central, 100",
+  "email": "mariana@email.com"
+}
+
+### Cadastrar médico clínico geral
+POST {{baseUrl}}/profissionais
+Content-Type: application/json
+
+{
+  "categoria": "CLINICO_GERAL",
+  "nome": "Lucas Vieira",
+  "registroProfissional": "CRM10001",
+  "telefone": "31988887777",
+  "email": "lucas@email.com"
+}
+
+### Cadastrar médico especialista
+POST {{baseUrl}}/profissionais
+Content-Type: application/json
+
+{
+  "categoria": "ESPECIALISTA",
+  "nome": "Ana Costa",
+  "registroProfissional": "CRM10002",
+  "telefone": "31988886666",
+  "email": "ana@email.com",
+  "especialidade": "Cardiologia"
+}
+
+### Cadastrar cirurgião
+POST {{baseUrl}}/profissionais
+Content-Type: application/json
+
+{
+  "categoria": "CIRURGIAO",
+  "nome": "Rafael Lima",
+  "registroProfissional": "CRM10003",
+  "telefone": "31988885555",
+  "email": "rafael@email.com",
+  "areaCirurgica": "Cirurgia geral"
+}
+
+### Cadastrar quarto
+POST {{baseUrl}}/quartos
+Content-Type: application/json
+
+{
+  "numeroIdentificacao": 101,
+  "andar": 1,
+  "capacidadeMaxima": 3,
+  "tipo": "ENFERMARIA"
+}
+
+### Cadastrar consulta de rotina (use IDs cadastrados acima)
+POST {{baseUrl}}/consultas
+Content-Type: application/json
+
+{
+  "modalidade": "ROTINA",
+  "pacienteId": 1,
+  "profissionalId": 1,
+  "data": "2026-12-01",
+  "horario": "09:00:00",
+  "motivo": "Consulta de rotina",
+  "observacoesMedicas": ""
+}
+
+### Listar pacientes
+GET {{baseUrl}}/pacientes
+
+### Listar profissionais
+GET {{baseUrl}}/profissionais
+
+### Listar consultas
+GET {{baseUrl}}/consultas
+
+### Listar internações
+GET {{baseUrl}}/internacoes
+
+### Listar quartos
+GET {{baseUrl}}/quartos

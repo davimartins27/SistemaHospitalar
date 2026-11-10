@@ -1,0 +1,15 @@
+services:
+  banco:
+    image: mysql:8.4
+    container_name: sistema-hospitalar-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: sistema_hospitalar
+    ports:
+      - "3306:3306"
+    volumes:
+      - dados_mysql:/var/lib/mysql
+
+volumes:
+  dados_mysql:

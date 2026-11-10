@@ -1,0 +1,151 @@
+digraph SistemaHospitalar {
+  graph [rankdir=LR, splines=polyline, nodesep=0.35, ranksep=0.75, pad=0.25, bgcolor="white", fontname="Arial", label="Sistema Hospitalar — Diagrama de Classes (Sprint 2)", labelloc="t", fontsize=22, compound=true];
+  node [shape=plain, fontname="Arial", fontsize=10];
+  edge [fontname="Arial", fontsize=9, color="#475569", arrowsize=0.8];
+
+  subgraph cluster_cadastros {
+    label="Cadastros e internações"; color="#CBD5E1"; style="rounded"; fontname="Arial"; fontsize=13;
+    Paciente [label=<
+      <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5">
+        <TR><TD BGCOLOR="#E7EEF7"><B>Paciente</B></TD></TR>
+        <TR><TD ALIGN="LEFT">- id: Long<BR ALIGN="LEFT"/>- nome: String<BR ALIGN="LEFT"/>- cpf: String<BR ALIGN="LEFT"/>- dataNascimento: LocalDate<BR ALIGN="LEFT"/>- telefone: String<BR ALIGN="LEFT"/>- endereco: String<BR ALIGN="LEFT"/>- email: String</TD></TR>
+        <TR><TD ALIGN="LEFT">+ cadastrar()<BR ALIGN="LEFT"/>+ atualizarDados()</TD></TR>
+      </TABLE>>];
+    HistoricoMedico [label=<
+      <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5">
+        <TR><TD BGCOLOR="#E7EEF7"><B>HistoricoMedico</B></TD></TR>
+        <TR><TD ALIGN="LEFT">- id: Long<BR ALIGN="LEFT"/>- informacoesRelevantes: String</TD></TR>
+        <TR><TD ALIGN="LEFT">+ adicionarInformacao()</TD></TR>
+      </TABLE>>];
+    Internacao [label=<
+      <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5">
+        <TR><TD BGCOLOR="#E7EEF7"><B>Internacao</B></TD></TR>
+        <TR><TD ALIGN="LEFT">- id: Long<BR ALIGN="LEFT"/>- paciente: Paciente<BR ALIGN="LEFT"/>- profissionalResponsavel: ProfissionalSaude<BR ALIGN="LEFT"/>- quarto: Quarto<BR ALIGN="LEFT"/>- dataEntrada: LocalDate<BR ALIGN="LEFT"/>- dataPrevistaAlta: LocalDate<BR ALIGN="LEFT"/>- dataEfetivaAlta: LocalDate<BR ALIGN="LEFT"/>- situacao: SituacaoInternacao</TD></TR>
+        <TR><TD ALIGN="LEFT">+ registrarAlta()</TD></TR>
+      </TABLE>>];
+    Quarto [label=<
+      <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5">
+        <TR><TD BGCOLOR="#E7EEF7"><B>Quarto</B></TD></TR>
+        <TR><TD ALIGN="LEFT">- id: Long<BR ALIGN="LEFT"/>- numeroIdentificacao: Integer<BR ALIGN="LEFT"/>- andar: Integer<BR ALIGN="LEFT"/>- capacidadeMaxima: Integer<BR ALIGN="LEFT"/>- tipo: TipoQuarto<BR ALIGN="LEFT"/>- situacaoAtual: SituacaoQuarto</TD></TR>
+        <TR><TD ALIGN="LEFT">+ temVaga()<BR ALIGN="LEFT"/>+ atualizarSituacao()<BR ALIGN="LEFT"/>+ validarTipoECapacidade()</TD></TR>
+      </TABLE>>];
+    Paciente -> HistoricoMedico [dir=none, taillabel="1", headlabel="1", labeldistance=1.3];
+    Paciente -> Internacao [dir=none, taillabel="1", headlabel="0..*", labeldistance=1.3];
+    Quarto -> Internacao [dir=none, taillabel="1", headlabel="0..*", labeldistance=1.3];
+  }
+
+  subgraph cluster_profissionais {
+    label="Categorias de profissionais"; color="#CBD5E1"; style="rounded"; fontname="Arial"; fontsize=13;
+    ProfissionalSaude [label=<
+      <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5">
+        <TR><TD BGCOLOR="#E7EEF7"><B><I>ProfissionalSaude</I></B></TD></TR>
+        <TR><TD ALIGN="LEFT">- id: Long<BR ALIGN="LEFT"/>- nome: String<BR ALIGN="LEFT"/>- registroProfissional: String<BR ALIGN="LEFT"/>- telefone: String<BR ALIGN="LEFT"/>- email: String</TD></TR>
+        <TR><TD ALIGN="LEFT">+ validarAtendimento()</TD></TR>
+      </TABLE>>];
+    MedicoClinicoGeral [label=<
+      <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5">
+        <TR><TD BGCOLOR="#F1F5F9"><B>MedicoClinicoGeral</B></TD></TR>
+        <TR><TD ALIGN="LEFT">+ validarAtendimento()</TD></TR>
+      </TABLE>>];
+    MedicoEspecialista [label=<
+      <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5">
+        <TR><TD BGCOLOR="#F1F5F9"><B>MedicoEspecialista</B></TD></TR>
+        <TR><TD ALIGN="LEFT">- especialidade: String</TD></TR>
+        <TR><TD ALIGN="LEFT">+ validarAtendimento()</TD></TR>
+      </TABLE>>];
+    Cirurgiao [label=<
+      <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5">
+        <TR><TD BGCOLOR="#F1F5F9"><B>Cirurgiao</B></TD></TR>
+        <TR><TD ALIGN="LEFT">- areaCirurgica: String</TD></TR>
+        <TR><TD ALIGN="LEFT">+ validarAtendimento()</TD></TR>
+      </TABLE>>];
+    MedicoClinicoGeral -> ProfissionalSaude [arrowhead=empty];
+    MedicoEspecialista -> ProfissionalSaude [arrowhead=empty];
+    Cirurgiao -> ProfissionalSaude [arrowhead=empty];
+  }
+
+  subgraph cluster_atendimentos {
+    label="Modalidades de atendimento"; color="#CBD5E1"; style="rounded"; fontname="Arial"; fontsize=13;
+    Atendimento [label=<
+      <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5">
+        <TR><TD BGCOLOR="#E7EEF7"><B><I>Atendimento</I></B></TD></TR>
+        <TR><TD ALIGN="LEFT">- id: Long<BR ALIGN="LEFT"/>- data: LocalDate<BR ALIGN="LEFT"/>- horario: LocalTime<BR ALIGN="LEFT"/>- paciente: Paciente<BR ALIGN="LEFT"/>- profissional: ProfissionalSaude</TD></TR>
+        <TR><TD ALIGN="LEFT">+ validar()<BR ALIGN="LEFT"/>+ validarCondicoes()</TD></TR>
+      </TABLE>>];
+    Consulta [label=<
+      <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5">
+        <TR><TD BGCOLOR="#E7EEF7"><B><I>Consulta</I></B></TD></TR>
+        <TR><TD ALIGN="LEFT">- situacao: SituacaoConsulta<BR ALIGN="LEFT"/>- motivo: String<BR ALIGN="LEFT"/>- observacoesMedicas: String</TD></TR>
+        <TR><TD ALIGN="LEFT">+ alterarSituacao()</TD></TR>
+      </TABLE>>];
+    ConsultaRotina [label=<
+      <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5">
+        <TR><TD BGCOLOR="#F1F5F9"><B>ConsultaRotina</B></TD></TR>
+        <TR><TD ALIGN="LEFT">+ validarCondicoes()</TD></TR>
+      </TABLE>>];
+    ConsultaEspecializada [label=<
+      <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5">
+        <TR><TD BGCOLOR="#F1F5F9"><B>ConsultaEspecializada</B></TD></TR>
+        <TR><TD ALIGN="LEFT">- especialidadeSolicitada: String</TD></TR>
+        <TR><TD ALIGN="LEFT">+ validarCondicoes()</TD></TR>
+      </TABLE>>];
+    AtendimentoEmergencia [label=<
+      <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5">
+        <TR><TD BGCOLOR="#F1F5F9"><B>AtendimentoEmergencia</B></TD></TR>
+        <TR><TD ALIGN="LEFT">- prioridade: PrioridadeEmergencia</TD></TR>
+        <TR><TD ALIGN="LEFT">+ validarCondicoes()</TD></TR>
+      </TABLE>>];
+    ProcedimentoCirurgico [label=<
+      <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5">
+        <TR><TD BGCOLOR="#F1F5F9"><B>ProcedimentoCirurgico</B></TD></TR>
+        <TR><TD ALIGN="LEFT">- descricao: String<BR ALIGN="LEFT"/>- tipoCirurgia: String<BR ALIGN="LEFT"/>- observacoesPreOperatorias: String<BR ALIGN="LEFT"/>- observacoesPosOperatorias: String<BR ALIGN="LEFT"/>- situacao: SituacaoProcedimento</TD></TR>
+        <TR><TD ALIGN="LEFT">+ validarCondicoes()<BR ALIGN="LEFT"/>+ alterarSituacao()</TD></TR>
+      </TABLE>>];
+    Consulta -> Atendimento [arrowhead=empty];
+    ProcedimentoCirurgico -> Atendimento [arrowhead=empty];
+    ConsultaRotina -> Consulta [arrowhead=empty];
+    ConsultaEspecializada -> Consulta [arrowhead=empty];
+    AtendimentoEmergencia -> Consulta [arrowhead=empty];
+  }
+
+  SituacaoConsulta [label=<
+    <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+      <TR><TD BGCOLOR="#FFF7E6"><B>&lt;&lt;enum&gt;&gt; SituacaoConsulta</B></TD></TR>
+      <TR><TD ALIGN="LEFT">AGENDADA<BR ALIGN="LEFT"/>CONFIRMADA<BR ALIGN="LEFT"/>EM_ATENDIMENTO<BR ALIGN="LEFT"/>CONCLUIDA<BR ALIGN="LEFT"/>CANCELADA<BR ALIGN="LEFT"/>NAO_COMPARECEU</TD></TR>
+    </TABLE>>];
+  PrioridadeEmergencia [label=<
+    <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+      <TR><TD BGCOLOR="#FFF7E6"><B>&lt;&lt;enum&gt;&gt; PrioridadeEmergencia</B></TD></TR>
+      <TR><TD ALIGN="LEFT">BAIXA<BR ALIGN="LEFT"/>MODERADA<BR ALIGN="LEFT"/>ALTA<BR ALIGN="LEFT"/>CRITICA</TD></TR>
+    </TABLE>>];
+  SituacaoProcedimento [label=<
+    <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+      <TR><TD BGCOLOR="#FFF7E6"><B>&lt;&lt;enum&gt;&gt; SituacaoProcedimento</B></TD></TR>
+      <TR><TD ALIGN="LEFT">AGENDADO<BR ALIGN="LEFT"/>EM_ANDAMENTO<BR ALIGN="LEFT"/>CONCLUIDO<BR ALIGN="LEFT"/>CANCELADO</TD></TR>
+    </TABLE>>];
+  TipoQuarto [label=<
+    <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+      <TR><TD BGCOLOR="#FFF7E6"><B>&lt;&lt;enum&gt;&gt; TipoQuarto</B></TD></TR>
+      <TR><TD ALIGN="LEFT">ENFERMARIA<BR ALIGN="LEFT"/>APARTAMENTO<BR ALIGN="LEFT"/>UTI</TD></TR>
+    </TABLE>>];
+  SituacaoInternacao [label=<
+    <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+      <TR><TD BGCOLOR="#FFF7E6"><B>&lt;&lt;enum&gt;&gt; SituacaoInternacao</B></TD></TR>
+      <TR><TD ALIGN="LEFT">ATIVA<BR ALIGN="LEFT"/>ALTA</TD></TR>
+    </TABLE>>];
+  SituacaoQuarto [label=<
+    <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+      <TR><TD BGCOLOR="#FFF7E6"><B>&lt;&lt;enum&gt;&gt; SituacaoQuarto</B></TD></TR>
+      <TR><TD ALIGN="LEFT">DISPONIVEL<BR ALIGN="LEFT"/>OCUPADO</TD></TR>
+    </TABLE>>];
+
+  ProfissionalSaude -> Atendimento [dir=none, taillabel="1", headlabel="0..*", labeldistance=1.4, constraint=false];
+  ProfissionalSaude -> Internacao [dir=none, taillabel="1", headlabel="0..*", labeldistance=1.4, constraint=false];
+  Paciente -> Atendimento [dir=none, taillabel="1", headlabel="0..*", labeldistance=1.4, constraint=false];
+  Consulta -> SituacaoConsulta [style=dashed, arrowhead=none, constraint=false];
+  AtendimentoEmergencia -> PrioridadeEmergencia [style=dashed, arrowhead=none, constraint=false];
+  ProcedimentoCirurgico -> SituacaoProcedimento [style=dashed, arrowhead=none, constraint=false];
+  Quarto -> TipoQuarto [style=dashed, arrowhead=none, constraint=false];
+  Quarto -> SituacaoQuarto [style=dashed, arrowhead=none, constraint=false];
+  Internacao -> SituacaoInternacao [style=dashed, arrowhead=none, constraint=false];
+}
